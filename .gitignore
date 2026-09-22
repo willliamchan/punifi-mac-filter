@@ -1,0 +1,24 @@
+# Local development environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+secrets/
+secrets.yaml
+*.pem
+*.key
+
+# Private development evidence, HA state and backups
+.storage/
+backups/
+private/
+WORK_PLAN.md
+CHECKPOINT.md
