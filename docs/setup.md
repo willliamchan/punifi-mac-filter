@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Beta 0.1.0b2.** The native setup/configuration flows are implemented and tested in Home Assistant. Screenshots and live UI acceptance remain pending. Start in observation-only mode.
+> **Release 0.1.0.** The native setup/configuration flows are implemented and tested in Home Assistant. Screenshots and live UI acceptance remain pending. Start in observation-only mode.
 
 ## 1. Connect pfSense
 
@@ -41,7 +41,7 @@ Then select the intended site from the discovered sites. Do not paste a username
 
 ### Obtaining a UniFi API key
 
-Use the API-key management screen provided by your UniFi installation. Its location and permission model depend on the console and software version; a verified version-specific menu path is still pending for this beta. Do not guess privileges or assume that a key for the official Integration API can also update WLAN filters through the legacy API.
+Use the API-key management screen provided by your UniFi installation. Its location and permission model depend on the console and software version; a verified version-specific menu path is still pending for this release. Do not guess privileges or assume that a key for the official Integration API can also update WLAN filters through the legacy API.
 
 Use a dedicated, appropriately scoped identity where supported. The minimum working role is still being verified; this project does not claim that console Owner access is required.
 

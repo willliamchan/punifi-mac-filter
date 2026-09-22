@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Beta 0.1.0b2.** The safeguards below are implemented and covered by focused tests, not a comprehensive security certification. Live deployment and AP enforcement remain separate tests. See [test status](testing.md).
+> **Release 0.1.0.** The safeguards below are implemented and covered by focused tests, not a comprehensive security certification. Live deployment and AP enforcement remain separate tests. See [test status](testing.md).
 
 ## Strictly one-way
 
@@ -38,7 +38,7 @@ Pausing, removing a mapping or uninstalling stops management; it does not restor
 
 ## Known limitations
 
-- An installable beta package and HA-native tests are available. A full browser-driven HACS installation and live end-to-end filter enforcement remain unverified.
+- An installable release package and HA-native tests are available. A full browser-driven HACS installation and live end-to-end filter enforcement remain unverified.
 - The intended UniFi filter writer uses a legacy API whose behavior may vary by version.
 - Minimum UniFi write role, maximum supported MAC-list size, empty restricted-list semantics and cross-version compatibility remain unverified.
 - A Synced sensor will confirm controller configuration equality, not AP enforcement or client reachability.

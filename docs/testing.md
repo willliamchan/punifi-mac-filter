@@ -1,8 +1,8 @@
-# Testing the first beta
+# Testing and verification
 
 [← Back to the overview](../README.md)
 
-## Scope of 0.1.0b2
+## Scope of 0.1.0
 
 This build implements native setup/reconfigure/reauth/options flows, explicit interface-to-SSID mappings, source/observed/sync sensors, a per-target manual button and a guarded one-way reconciliation loop. Defaults are observation-only. There is no pfSense mutation API in the integration.
 
@@ -27,7 +27,7 @@ Synthetic provider responses test behavior without changing a network. They are 
 
 ## Suggested first test
 
-1. Install the beta using the [HACS guide](installation.md), then add the integration.
+1. Install the release using the [HACS guide](installation.md), then add the integration.
 2. Enter your connection details and select the correct UniFi site.
 3. Add **one** source/SSID pair, check **Confirm pair**, and save with global sync **off** and the pair disabled.
 4. Confirm that the source sensor shows the correct policy/own-interface MAC list and the observed sensor matches UniFi. Out of sync is expected if they currently differ; observation-only must not alter the filter.

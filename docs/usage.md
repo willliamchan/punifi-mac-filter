@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Beta 0.1.0b2.** The entities and controls below are implemented. Test first with sync disabled; controller-write and AP behavior in your environment still require controlled verification.
+> **Release 0.1.0.** The entities and controls below are implemented. Test first with sync disabled; controller-write and AP behavior in your environment still require controlled verification.
 
 ## Where to make changes
 

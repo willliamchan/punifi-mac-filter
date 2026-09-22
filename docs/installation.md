@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Beta 0.1.0b2.** Use this first build for controlled testing. Start with global and per-pair sync disabled. See [what has been verified](testing.md) before enabling a write.
+> **Release 0.1.0.** Start with controlled observation-only testing. Start with global and per-pair sync disabled. See [what has been verified](testing.md) before enabling a write.
 
 ## What you will need
 
@@ -13,9 +13,13 @@
 - At least one UniFi Wi-Fi SSID to map to a pfSense DHCP interface.
 - A Home Assistant backup before installing a new custom integration.
 
-Read-only provider compatibility was verified on pfSense **2.9.0-RELEASE** and UniFi OS Network **10.6.106**. Standalone Network Server is not supported by this beta. Home Assistant Cloud is not a substitute for network access from HA to your firewall/controller.
+Read-only provider compatibility was verified on pfSense **2.9.0-RELEASE** and UniFi OS Network **10.6.106**. Standalone Network Server is not supported by this release. Home Assistant Cloud is not a substitute for network access from HA to your firewall/controller.
 
 ## Install through HACS
+
+[![Open HACS repository on your Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=willliamchan&repository=punifi-mac-filter&category=integration)
+
+With HACS already installed, click the banner and follow the prompts to open/add this repository and download **0.1.0**. This does not configure credentials or enable sync. Alternatively, add it manually:
 
 1. Open **HACS** in Home Assistant.
 2. Open its menu and choose **Custom repositories**. Menu placement may vary by HACS version.
@@ -26,7 +30,7 @@ Read-only provider compatibility was verified on pfSense **2.9.0-RELEASE** and U
    ```
 
 4. Choose **Integration** as the repository type and add it.
-5. Find **pUniFi MAC Filter** in HACS. Enable beta/pre-release versions if needed and select **0.1.0b2**; if the tag is not offered, select **main** in the download version selector.
+5. Find **pUniFi MAC Filter** in HACS. Select the normal release **0.1.0**; enabling beta/pre-release versions is not required.
 6. Restart Home Assistant if prompted, so it can load the integration.
 7. Go to **Settings → Devices & services → Add integration**.
 8. Search for **pUniFi MAC Filter** and follow the [setup guide](setup.md).

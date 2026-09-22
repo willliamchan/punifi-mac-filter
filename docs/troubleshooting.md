@@ -2,11 +2,11 @@
 
 [← Back to the overview](../README.md)
 
-> **Beta 0.1.0b2 troubleshooting.** Include your build and HA/provider versions when reporting a problem.
+> **Release 0.1.0 troubleshooting.** Include your build and HA/provider versions when reporting a problem.
 
 ## HACS cannot install this repository
 
-Check that HA is at least 2026.9.3, and select the beta version (or main) rather than an older documentation-only commit. Refresh the HACS repository information if it was added before code was published. Do not create placeholder files in your HA configuration.
+Check that HA is at least 2026.9.3, and select the integration version (or main) rather than an older documentation-only commit. Refresh the HACS repository information if it was added before code was published. Do not create placeholder files in your HA configuration.
 
 Check that you added the repository as an **Integration**, downloaded it, and restarted HA if required before searching under **Add integration**.
 
