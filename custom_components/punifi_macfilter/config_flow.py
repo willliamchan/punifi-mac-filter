@@ -8,6 +8,7 @@ from homeassistant import config_entries
 from homeassistant.core import callback
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
 from homeassistant.helpers.selector import TextSelector, TextSelectorConfig, TextSelectorType
+from homeassistant.helpers.translation import async_get_translations
 
 from .const import DOMAIN, NAME, POLICIES
 from .pfsense import PfSense
@@ -145,8 +146,23 @@ class MappingEditor:
         )
         if self.pf_snapshot is None:
             summary += " Provider reads failed. You can still disable global sync; enablement requires fresh valid reads."
+        # Native menus accept explicit captions. Resolve them server-side so
+        # an empty/stale browser translation cache cannot render blank actions.
+        category = "options" if isinstance(self, OptionsFlow) else "config"
+        translations = await async_get_translations(self.hass, self.hass.config.language, category, {DOMAIN})
+        fallback = {
+            "pair": "Add pair",
+            "edit_pair": "Edit pair",
+            "remove_pair": "Remove pair",
+            "finish": "Review sync enablement and save",
+        }
+        captions = {
+            key: translations.get(f"component.{DOMAIN}.{category}.step.mappings.menu_options.{key}")
+            or fallback[key]
+            for key in menu
+        }
         return self.async_show_menu(
-            step_id="mappings", menu_options=menu, description_placeholders={"summary": summary}
+            step_id="mappings", menu_options=captions, description_placeholders={"summary": summary}
         )
 
     async def async_step_pair(self, user_input=None):

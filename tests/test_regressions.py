@@ -20,7 +20,7 @@ async def test_pause_available_when_provider_offline(hass, entry, clients):
     enable(hass, entry)
     clients[0].read.side_effect = ProviderError("cannot_connect", "pfsense")
     result = await hass.config_entries.options.async_init(entry.entry_id)
-    assert result["menu_options"] == ["finish"]
+    assert result["menu_options"] == {"finish": "Review sync enablement and save"}
     result = await hass.config_entries.options.async_configure(result["flow_id"], {"next_step_id": "finish"})
     result = await hass.config_entries.options.async_configure(result["flow_id"], {"sync_enabled": False})
     assert result["type"] == "create_entry"

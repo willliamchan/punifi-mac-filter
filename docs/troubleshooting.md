@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Beta 0.1.0b1 troubleshooting.** Include your build and HA/provider versions when reporting a problem.
+> **Beta 0.1.0b2 troubleshooting.** Include your build and HA/provider versions when reporting a problem.
 
 ## HACS cannot install this repository
 

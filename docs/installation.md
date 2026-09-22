@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Beta 0.1.0b1.** Use this first build for controlled testing. Start with global and per-pair sync disabled. See [what has been verified](testing.md) before enabling a write.
+> **Beta 0.1.0b2.** Use this first build for controlled testing. Start with global and per-pair sync disabled. See [what has been verified](testing.md) before enabling a write.
 
 ## What you will need
 
@@ -26,7 +26,7 @@ Read-only provider compatibility was verified on pfSense **2.9.0-RELEASE** and U
    ```
 
 4. Choose **Integration** as the repository type and add it.
-5. Find **pUniFi MAC Filter** in HACS. Enable beta/pre-release versions if needed and select **0.1.0b1**; if the tag is not offered, select **main** in the download version selector.
+5. Find **pUniFi MAC Filter** in HACS. Enable beta/pre-release versions if needed and select **0.1.0b2**; if the tag is not offered, select **main** in the download version selector.
 6. Restart Home Assistant if prompted, so it can load the integration.
 7. Go to **Settings → Devices & services → Add integration**.
 8. Search for **pUniFi MAC Filter** and follow the [setup guide](setup.md).

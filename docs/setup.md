@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Beta 0.1.0b1.** The native setup/configuration flows are implemented and tested in Home Assistant. Screenshots and live UI acceptance remain pending. Start in observation-only mode.
+> **Beta 0.1.0b2.** The native setup/configuration flows are implemented and tested in Home Assistant. Screenshots and live UI acceptance remain pending. Start in observation-only mode.
 
 ## 1. Connect pfSense
 

@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Beta 0.1.0b1.** The safeguards below are implemented and covered by focused tests, not a comprehensive security certification. Live deployment and AP enforcement remain separate tests. See [test status](testing.md).
+> **Beta 0.1.0b2.** The safeguards below are implemented and covered by focused tests, not a comprehensive security certification. Live deployment and AP enforcement remain separate tests. See [test status](testing.md).
 
 ## Strictly one-way
 

@@ -4,7 +4,7 @@ Keep selected UniFi Wi-Fi MAC filters aligned with your pfSense DHCP policies, f
 
 **pfSense → Home Assistant → UniFi. One way only.**
 
-> **First test build: 0.1.0b1.** This is a beta, not a production-certified release. Start with sync disabled. Native HA tests and live read-only provider checks have been exercised; live filter changes and AP enforcement from this integration still need controlled user testing. See [test status](docs/testing.md).
+> **First test build: 0.1.0b2.** This is a beta, not a production-certified release. Start with sync disabled. Native HA tests and live read-only provider checks have been exercised; live filter changes and AP enforcement from this integration still need controlled user testing. See [test status](docs/testing.md).
 
 ## What does it do?
 

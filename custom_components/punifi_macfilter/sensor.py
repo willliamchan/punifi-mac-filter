@@ -16,7 +16,8 @@ async def async_setup_entry(hass, entry, async_add_entities):
     def add_new():
         if not coordinator.data or not coordinator.data.get("source"):
             return
-        keys = [("source", k) for k in coordinator.data["source"]["interfaces"]]
+        selected = {m["pfsense_interface_id"] for m in entry.options.get("mappings", [])}
+        keys = [("source", k) for k in coordinator.data["source"]["interfaces"] if k in selected]
         keys += [("observed", k) for k in coordinator.data["target"]["wlans"]]
         keys += [("sync", m["unifi_wlan_id"]) for m in entry.options.get("mappings", [])]
         new = [key for key in keys if key not in seen]

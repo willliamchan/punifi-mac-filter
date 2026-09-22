@@ -160,11 +160,14 @@ async def test_registry_mapping_remove_and_rename(hass, entry, clients, source, 
     registry = er.async_get(hass)
     original = registry.async_get("sensor.punifi_pfsense_dhcp_iot").unique_id
     source["interfaces"]["opt1"]["name"] = "Renamed"
+    assert await hass.config_entries.async_reload(entry.entry_id)
+    await hass.async_block_till_done()
+    assert registry.async_get("sensor.punifi_pfsense_dhcp_iot").unique_id == original
     options = dict(entry.options, mappings=[])
     hass.config_entries.async_update_entry(entry, options=options)
     assert await hass.config_entries.async_reload(entry.entry_id)
     await hass.async_block_till_done()
-    assert registry.async_get("sensor.punifi_pfsense_dhcp_iot").unique_id == original
+    assert registry.async_get("sensor.punifi_pfsense_dhcp_iot") is None
     assert registry.async_get("sensor.punifi_sync_smart_home") is None
     assert registry.async_get("button.punifi_sync_smart_home") is None
     assert registry.async_get("sensor.punifi_unifi_macfilter_smart_home") is not None

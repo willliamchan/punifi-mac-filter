@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Beta 0.1.0b1.** The entities and controls below are implemented. Test first with sync disabled; controller-write and AP behavior in your environment still require controlled verification.
+> **Beta 0.1.0b2.** The entities and controls below are implemented. Test first with sync disabled; controller-write and AP behavior in your environment still require controlled verification.
 
 ## Where to make changes
 
@@ -20,6 +20,8 @@ With sync enabled, a manual change to a managed UniFi MAC filter will be treated
 | **pUniFi UniFi MAC Filter &lt;SSID&gt;** | The filter actually read from UniFi: Disabled, Allow or Deny, with its observed enabled/mode/list attributes. |
 | **pUniFi Sync &lt;SSID&gt;** | Whether this mapped target matches its current source policy. |
 | **pUniFi Sync now &lt;SSID&gt;** | A button requesting an immediate guarded sync for this target. |
+
+Only pfSense interfaces used by a saved pair get source sensors. Multiple pairs using the same interface share one source sensor. Removing the last pair using an interface retires that sensor; upgrading from 0.1.0b1 also removes previously created unpaired source sensors on successful integration setup. UniFi observed sensors remain unchanged. All interfaces remain available in the pairing dropdown.
 
 Initial entity IDs follow these patterns:
 
@@ -50,7 +52,7 @@ Sync enablement is separate from status. A paused target can still show **Synced
 Press **pUniFi Sync now &lt;SSID&gt;** to request fresh reads and immediate reconciliation for that pair. You can use the native Home Assistant button control or `button.press` in an automation.
 
 - Already matched? It checks and makes no write.
-- Paused? The button is unavailable; enable the appropriate sync controls first.
+- Paused? The button is unavailable by design. Both global and per-pair sync must be enabled. **Enabling both permits automatic writes immediately**; do not enable them merely to make the button available.
 - Invalid data, identity change or permission failure? Manual sync does not bypass protection or retry backoff.
 - Another sync running? Requests are coalesced rather than run concurrently.
 

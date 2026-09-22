@@ -2,14 +2,14 @@
 
 [← Back to the overview](../README.md)
 
-## Scope of 0.1.0b1
+## Scope of 0.1.0b2
 
 This build implements native setup/reconfigure/reauth/options flows, explicit interface-to-SSID mappings, source/observed/sync sensors, a per-target manual button and a guarded one-way reconciliation loop. Defaults are observation-only. There is no pfSense mutation API in the integration.
 
 ### Verified during development
 
 - **Home Assistant 2026.9.3 / Python 3.14:** the native test harness exercises actual config-entry setup, flows, entity registration, services, reload, unload and authentication recovery with synthetic provider fixtures.
-- **97 focused tests:** source-age budgets across collection/exact-target reads; save-time ownership/baseline races and cancellation; policy normalization and all-interface union; empty/invalid data; mapping/identity changes; no-op/idempotence; drift and readback; source changes/failure during apply; bounded retry; pause/unload during an active write; duplicate ownership; credential retention/redaction; TLS/redirect/status handling; exact fixed pfSense XML-RPC payload; narrow UniFi filter-only mutation; and a synthetic 141-address allowlist.
+- **104 focused tests:** explicit menu captions (including missing translations), selected-only source sensors, upgrade cleanup, shared-source retirement and complete all-interface policy union; source-age budgets across collection/exact-target reads; save-time ownership/baseline races and cancellation; policy normalization and all-interface union; empty/invalid data; mapping/identity changes; no-op/idempotence; drift and readback; source changes/failure during apply; bounded retry; pause/unload during an active write; duplicate ownership; credential retention/redaction; TLS/redirect/status handling; exact fixed pfSense XML-RPC payload; narrow UniFi filter-only mutation; and a synthetic 141-address allowlist.
 - **Live read-only candidate clients:** TLS-verified collection and identity checks on pfSense 2.9.0-RELEASE and UniFi OS Network 10.6.106, including interface/site/network/WLAN discovery and exact-target reads. No live filters were changed by this integration during development.
 - **HA hassfest:** the complete applicable validator set from HA 2026.9.3 passed for the integration, including manifest, flow and translations.
 - **Ruff and repository checks:** source lint, formatting, documentation links, metadata and common accidental-secret patterns checked.

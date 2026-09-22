@@ -21,10 +21,17 @@ async def async_setup_entry(hass, entry):
     entry.runtime_data = coordinator
     try:
         await coordinator.async_config_entry_first_refresh()
-        # Retire only entities owned by mappings that were explicitly removed.
+        # Retire mapping entities and source sensors no longer used by a pair.
+        sources = {m["pfsense_interface_id"] for m in entry.options.get("mappings", [])}
         targets = {m["unifi_wlan_id"] for m in entry.options.get("mappings", [])}
         registry = er.async_get(hass)
         for entity in er.async_entries_for_config_entry(registry, entry.entry_id):
+            source_prefix = f"{entry.entry_id}:pf:"
+            if entity.unique_id.startswith(source_prefix):
+                expected = {f"{source_prefix}{entry.data['pfsense_id']}:{key}" for key in sources}
+                if entity.unique_id not in expected:
+                    registry.async_remove(entity.entity_id)
+                continue
             for role in ("sync", "button"):
                 prefix = f"{entry.entry_id}:{role}:"
                 if entity.unique_id.startswith(prefix) and entity.unique_id[len(prefix) :] not in targets:
