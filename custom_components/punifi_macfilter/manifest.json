@@ -1,0 +1,12 @@
+{
+  "domain": "punifi_macfilter",
+  "name": "pUniFi MAC Filter",
+  "codeowners": ["@willliamchan"],
+  "config_flow": true,
+  "documentation": "https://github.com/willliamchan/punifi-mac-filter",
+  "integration_type": "service",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/willliamchan/punifi-mac-filter/issues",
+  "requirements": [],
+  "version": "0.1.0b1"
+}

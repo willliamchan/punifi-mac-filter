@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Planned behavior.** These entities and controls have not been implemented or released yet.
+> **Beta 0.1.0b1.** The entities and controls below are implemented. Test first with sync disabled; controller-write and AP behavior in your environment still require controlled verification.
 
 ## Where to make changes
 
@@ -21,7 +21,7 @@ With sync enabled, a manual change to a managed UniFi MAC filter will be treated
 | **pUniFi Sync &lt;SSID&gt;** | Whether this mapped target matches its current source policy. |
 | **pUniFi Sync now &lt;SSID&gt;** | A button requesting an immediate guarded sync for this target. |
 
-Initial entity IDs will follow these patterns:
+Initial entity IDs follow these patterns:
 
 ```text
 sensor.punifi_pfsense_dhcp_<interface_slug>
@@ -58,10 +58,12 @@ The button only sends policy **from pfSense to UniFi**. It never imports a UniFi
 
 ## Pause or resume
 
-Open **Settings → Devices & services → pUniFi MAC Filter**, then its configuration/options controls. Final menu labels will be confirmed at release.
+Open **Settings → Devices & services → pUniFi MAC Filter → Configure** (the options control). Use **Edit pair** for per-target enablement and **Review sync enablement and save** for global enablement. Host/credential changes use **Reconfigure** in the entry menu.
 
 - **Global Enable sync:** pause or resume writes for the entire entry.
 - **Per-pair Enable sync:** choose which confirmed mappings can write.
+
+If a provider is offline, the options flow still allows global sync to be disabled; reconnect before adding/editing mappings or enabling sync.
 
 Both must be on for a mapping to apply changes. Turning global sync back on does not enable pairs you individually disabled. Resuming requires fresh reads.
 
@@ -77,7 +79,7 @@ Use **Reconfigure** on the integration entry. Edit host/port or replace credenti
 - The same verified firewall/controller/site keeps its mappings and entities.
 - A different appliance or site requires mapping review and renewed enablement; it cannot silently inherit write authority.
 
-If a credential expires or is revoked, follow the integration's reauthentication prompt. It will request the affected provider's credentials rather than create a duplicate integration entry.
+If a credential expires or is revoked, follow the integration's reauthentication prompt. It requests the affected provider's credentials rather than creating a duplicate integration entry. If the failure context is unavailable after restart, it first asks which provider needs reauthentication.
 
 ## Change or remove a mapping
 

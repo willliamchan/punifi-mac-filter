@@ -1,0 +1,234 @@
+{
+  "title": "pUniFi MAC Filter",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect pfSense",
+        "description": "HTTPS only. Enter host and port separately. Use a dedicated user with System - HA node sync (System \u2192 User Manager). This grants broad XML-RPC authority, not server-enforced read-only access. pUniFi runs only a fixed read collector. Leave a password blank during reconfigure to keep it. Credentials are stored in HA configuration and may be present in backups. [Credential help]({help_url}).",
+        "data": {
+          "pfsense_host": "Host",
+          "pfsense_port": "Port",
+          "pfsense_username": "Username",
+          "pfsense_password": "Password"
+        }
+      },
+      "unifi": {
+        "title": "Connect UniFi OS Network",
+        "description": "Use the local console HTTPS address and a UniFi API key. Leave the key blank during reconfigure to retain it. No trial writes are made: successful reads do not prove filter-write permission. Minimum write role remains unverified. [API-key help]({help_url}).",
+        "data": {
+          "unifi_host": "Host",
+          "unifi_port": "Port",
+          "unifi_api_key": "API key"
+        }
+      },
+      "site": {
+        "title": "Choose UniFi site",
+        "description": "Choose the site containing the Wi-Fi SSIDs to manage. A different controller/site clears pending mappings and sync enablement; review and add pairs again.",
+        "data": {
+          "site": "Site"
+        }
+      },
+      "mappings": {
+        "title": "Interface-to-Wi-Fi pairs",
+        "description": "{summary}\n\nTargets not added here remain Not managed. Pair one pfSense interface with one explicit SSID; names/VLANs need not match. Removing or disabling a pair leaves its last applied UniFi filter unchanged.",
+        "menu_options": {
+          "pair": "Add pair",
+          "edit_pair": "Edit pair",
+          "remove_pair": "Remove pair",
+          "finish": "Review sync enablement and save"
+        }
+      },
+      "pair": {
+        "title": "Select a pair",
+        "description": "Select both ends explicitly. A unique VLAN match may suggest a source for the initially displayed target; review it if you change the target. Enable sync here selects this pair; global sync must also be enabled.",
+        "data": {
+          "pfsense_interface_id": "pfSense DHCP interface",
+          "unifi_wlan_id": "UniFi SSID / network / VLAN / site",
+          "sync_enabled": "Enable sync for this pair"
+        }
+      },
+      "pair_preview": {
+        "title": "Review pair",
+        "description": "{preview}\n\nChecking Confirm adds this pair to the pending configuration. An unchecked confirmation discards this edit. No provider writes occur in this wizard. Functional MAC information is visible in HA sensors and may be retained in Recorder/backups.",
+        "data": {
+          "confirm": "Confirm pair"
+        }
+      },
+      "edit_pair": {
+        "title": "Edit a pair",
+        "description": "Choose the pair to review or reassign. Old applied filter settings are not automatically restored.",
+        "data": {
+          "target": "Wi-Fi target"
+        }
+      },
+      "remove_pair": {
+        "title": "Remove a pair",
+        "description": "Submitting removes this pair from the draft. It stops management when you Save, but leaves its last applied UniFi filter unchanged.",
+        "data": {
+          "target": "Wi-Fi target"
+        }
+      },
+      "finish": {
+        "title": "Save configuration",
+        "description": "{count} pair(s). Global sync and each pair must both be enabled to permit writes. Observation-only is the default. Enabled sync overwrites mapped UniFi filter changes from pfSense. Unknown UniFi write permission is not validated with trial writes. Keep a separate management connection available. Disabling/removing management does not undo filters.",
+        "data": {
+          "sync_enabled": "Enable automatic sync globally"
+        }
+      },
+      "init": {
+        "title": "Read configuration",
+        "description": "Retry the read-only connection check."
+      },
+      "reauth_provider": {
+        "title": "Choose affected provider",
+        "description": "The failed credential could not be identified after reload. Choose the provider requiring a replacement.",
+        "data": {
+          "provider": "Provider"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Replace credential",
+        "description": "Only this provider credential is replaced after identity and read-access validation. No test writes are performed.",
+        "data": {
+          "pfsense_username": "pfSense username",
+          "pfsense_password": "New pfSense password",
+          "unifi_api_key": "New UniFi API key"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Authentication failed. Check or replace the affected credential.",
+      "insufficient_permissions": "The account is recognized but lacks permission. Review provider permissions; write access is not proven by a read check.",
+      "cannot_connect": "Unable to reach the service. Check host, port and local network access.",
+      "tls_error": "Certificate validation failed. Check hostname, validity and trust chain. TLS verification cannot be bypassed.",
+      "redirect_blocked": "The endpoint redirected the request. Enter the actual HTTPS service address; redirects are not followed.",
+      "unsupported_api": "This endpoint or API version is not supported. This beta targets UniFi OS Network.",
+      "unsupported_schema": "The provider returned an unsupported or incomplete response. No changes were applied by this check.",
+      "invalid_endpoint": "Enter a hostname or bare IP and a separate valid HTTPS port, not a URL or path.",
+      "identity_changed": "The appliance/controller identity changed. Use Reconfigure to review connections and remap before enabling sync.",
+      "invalid_mac": "A static mapping contains an invalid MAC address. Fix the source data in pfSense.",
+      "empty_allowlist": "A restricted policy has no MAC addresses. Application is blocked; filtering will not be disabled as a fallback.",
+      "duplicate_target": "This Wi-Fi target is already managed by another pair or integration entry.",
+      "configuration_changed": "Configuration changed while this editor was open. Cancel and reopen it.",
+      "mapping_changed": "A mapped interface or target network/VLAN changed. Edit and confirm the pair before enabling it.",
+      "missing_source": "A mapped source interface is missing. Review the mapping.",
+      "missing_target": "A selected Wi-Fi target is missing. Review the mapping.",
+      "no_targets": "No eligible DHCP interfaces or Wi-Fi targets were discovered."
+    },
+    "abort": {
+      "invalid_auth": "Authentication failed. Check or replace the affected credential.",
+      "insufficient_permissions": "The account is recognized but lacks permission. Review provider permissions; write access is not proven by a read check.",
+      "cannot_connect": "Unable to reach the service. Check host, port and local network access.",
+      "tls_error": "Certificate validation failed. Check hostname, validity and trust chain. TLS verification cannot be bypassed.",
+      "redirect_blocked": "The endpoint redirected the request. Enter the actual HTTPS service address; redirects are not followed.",
+      "unsupported_api": "This endpoint or API version is not supported. This beta targets UniFi OS Network.",
+      "unsupported_schema": "The provider returned an unsupported or incomplete response. No changes were applied by this check.",
+      "invalid_endpoint": "Enter a hostname or bare IP and a separate valid HTTPS port, not a URL or path.",
+      "identity_changed": "The appliance/controller identity changed. Use Reconfigure to review connections and remap before enabling sync.",
+      "invalid_mac": "A static mapping contains an invalid MAC address. Fix the source data in pfSense.",
+      "empty_allowlist": "A restricted policy has no MAC addresses. Application is blocked; filtering will not be disabled as a fallback.",
+      "duplicate_target": "This Wi-Fi target is already managed by another pair or integration entry.",
+      "configuration_changed": "Configuration changed while this editor was open. Cancel and reopen it.",
+      "mapping_changed": "A mapped interface or target network/VLAN changed. Edit and confirm the pair before enabling it.",
+      "missing_source": "A mapped source interface is missing. Review the mapping.",
+      "missing_target": "A selected Wi-Fi target is missing. Review the mapping.",
+      "no_targets": "No eligible DHCP interfaces or Wi-Fi targets were discovered.",
+      "already_configured": "This firewall/controller/site connection is already configured.",
+      "reauth_successful": "Credentials updated.",
+      "reconfigure_successful": "Configuration updated."
+    }
+  },
+  "options": {
+    "step": {
+      "mappings": {
+        "title": "Interface-to-Wi-Fi pairs",
+        "description": "{summary}\n\nTargets not added here remain Not managed. Pair one pfSense interface with one explicit SSID; names/VLANs need not match. Removing or disabling a pair leaves its last applied UniFi filter unchanged.",
+        "menu_options": {
+          "pair": "Add pair",
+          "edit_pair": "Edit pair",
+          "remove_pair": "Remove pair",
+          "finish": "Review sync enablement and save"
+        }
+      },
+      "pair": {
+        "title": "Select a pair",
+        "description": "Select both ends explicitly. A unique VLAN match may suggest a source for the initially displayed target; review it if you change the target. Enable sync here selects this pair; global sync must also be enabled.",
+        "data": {
+          "pfsense_interface_id": "pfSense DHCP interface",
+          "unifi_wlan_id": "UniFi SSID / network / VLAN / site",
+          "sync_enabled": "Enable sync for this pair"
+        }
+      },
+      "pair_preview": {
+        "title": "Review pair",
+        "description": "{preview}\n\nChecking Confirm adds this pair to the pending configuration. An unchecked confirmation discards this edit. No provider writes occur in this wizard. Functional MAC information is visible in HA sensors and may be retained in Recorder/backups.",
+        "data": {
+          "confirm": "Confirm pair"
+        }
+      },
+      "edit_pair": {
+        "title": "Edit a pair",
+        "description": "Choose the pair to review or reassign. Old applied filter settings are not automatically restored.",
+        "data": {
+          "target": "Wi-Fi target"
+        }
+      },
+      "remove_pair": {
+        "title": "Remove a pair",
+        "description": "Submitting removes this pair from the draft. It stops management when you Save, but leaves its last applied UniFi filter unchanged.",
+        "data": {
+          "target": "Wi-Fi target"
+        }
+      },
+      "finish": {
+        "title": "Save configuration",
+        "description": "{count} pair(s). Global sync and each pair must both be enabled to permit writes. Observation-only is the default. Enabled sync overwrites mapped UniFi filter changes from pfSense. Unknown UniFi write permission is not validated with trial writes. Keep a separate management connection available. Disabling/removing management does not undo filters.",
+        "data": {
+          "sync_enabled": "Enable automatic sync globally"
+        }
+      },
+      "init": {
+        "title": "Read configuration",
+        "description": "Retry the read-only connection check."
+      }
+    },
+    "error": {
+      "invalid_auth": "Authentication failed. Check or replace the affected credential.",
+      "insufficient_permissions": "The account is recognized but lacks permission. Review provider permissions; write access is not proven by a read check.",
+      "cannot_connect": "Unable to reach the service. Check host, port and local network access.",
+      "tls_error": "Certificate validation failed. Check hostname, validity and trust chain. TLS verification cannot be bypassed.",
+      "redirect_blocked": "The endpoint redirected the request. Enter the actual HTTPS service address; redirects are not followed.",
+      "unsupported_api": "This endpoint or API version is not supported. This beta targets UniFi OS Network.",
+      "unsupported_schema": "The provider returned an unsupported or incomplete response. No changes were applied by this check.",
+      "invalid_endpoint": "Enter a hostname or bare IP and a separate valid HTTPS port, not a URL or path.",
+      "identity_changed": "The appliance/controller identity changed. Use Reconfigure to review connections and remap before enabling sync.",
+      "invalid_mac": "A static mapping contains an invalid MAC address. Fix the source data in pfSense.",
+      "empty_allowlist": "A restricted policy has no MAC addresses. Application is blocked; filtering will not be disabled as a fallback.",
+      "duplicate_target": "This Wi-Fi target is already managed by another pair or integration entry.",
+      "configuration_changed": "Configuration changed while this editor was open. Cancel and reopen it.",
+      "mapping_changed": "A mapped interface or target network/VLAN changed. Edit and confirm the pair before enabling it.",
+      "missing_source": "A mapped source interface is missing. Review the mapping.",
+      "missing_target": "A selected Wi-Fi target is missing. Review the mapping.",
+      "no_targets": "No eligible DHCP interfaces or Wi-Fi targets were discovered."
+    },
+    "abort": {
+      "invalid_auth": "Authentication failed. Check or replace the affected credential.",
+      "insufficient_permissions": "The account is recognized but lacks permission. Review provider permissions; write access is not proven by a read check.",
+      "cannot_connect": "Unable to reach the service. Check host, port and local network access.",
+      "tls_error": "Certificate validation failed. Check hostname, validity and trust chain. TLS verification cannot be bypassed.",
+      "redirect_blocked": "The endpoint redirected the request. Enter the actual HTTPS service address; redirects are not followed.",
+      "unsupported_api": "This endpoint or API version is not supported. This beta targets UniFi OS Network.",
+      "unsupported_schema": "The provider returned an unsupported or incomplete response. No changes were applied by this check.",
+      "invalid_endpoint": "Enter a hostname or bare IP and a separate valid HTTPS port, not a URL or path.",
+      "identity_changed": "The appliance/controller identity changed. Use Reconfigure to review connections and remap before enabling sync.",
+      "invalid_mac": "A static mapping contains an invalid MAC address. Fix the source data in pfSense.",
+      "empty_allowlist": "A restricted policy has no MAC addresses. Application is blocked; filtering will not be disabled as a fallback.",
+      "duplicate_target": "This Wi-Fi target is already managed by another pair or integration entry.",
+      "configuration_changed": "Configuration changed while this editor was open. Cancel and reopen it.",
+      "mapping_changed": "A mapped interface or target network/VLAN changed. Edit and confirm the pair before enabling it.",
+      "missing_source": "A mapped source interface is missing. Review the mapping.",
+      "missing_target": "A selected Wi-Fi target is missing. Review the mapping.",
+      "no_targets": "No eligible DHCP interfaces or Wi-Fi targets were discovered."
+    }
+  }
+}

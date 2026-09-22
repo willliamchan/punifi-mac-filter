@@ -2,13 +2,13 @@
 
 [← Back to the overview](../README.md)
 
-> **Pre-release guide.** No integration build is available yet. The runtime checks below describe the intended first release, not currently tested UI behavior.
+> **Beta 0.1.0b1 troubleshooting.** Include your build and HA/provider versions when reporting a problem.
 
 ## HACS cannot install this repository
 
-At present this is expected: the repository contains documentation only, not an integration package. Wait for an installable release. Do not create placeholder files in your Home Assistant configuration to work around this.
+Check that HA is at least 2026.9.3, and select the beta version (or main) rather than an older documentation-only commit. Refresh the HACS repository information if it was added before code was published. Do not create placeholder files in your HA configuration.
 
-After release, check that you added the repository as an **Integration**, downloaded it, and restarted HA if required before searching under **Add integration**.
+Check that you added the repository as an **Integration**, downloaded it, and restarted HA if required before searching under **Add integration**.
 
 ## Cannot connect
 
@@ -46,7 +46,7 @@ Check global Enable sync and that pair's Enable sync. Both must be enabled. Then
 
 Review the applicable static mappings in pfSense. “Only this interface” uses that interface's mappings; “any interface” uses the combined set.
 
-The planned integration will block an empty restricted allowlist until safe behavior is established for the supported UniFi version. It will not interpret it as “disable filtering” or silently open access.
+The integration blocks an empty restricted allowlist until safe behavior is established for the supported UniFi version. It will not interpret it as “disable filtering” or silently open access.
 
 ## Synced, but a client cannot connect
 
@@ -61,10 +61,10 @@ Keep a separate management connection available while investigating. Do not remo
 
 ## I paused or removed the integration, but the filter is still there
 
-This is intentional. Stopping management does not undo previously applied UniFi settings. Review and change the filter directly in UniFi after pUniFi management has stopped. See [removal](installation.md#removing--after-release).
+This is intentional. Stopping management does not undo previously applied UniFi settings. Review and change the filter directly in UniFi after pUniFi management has stopped. See [removal](installation.md#removing).
 
 ## Reporting a problem
 
-Use [GitHub Issues](https://github.com/willliamchan/punifi-mac-filter/issues). For a future runtime issue, include integration, HA, pfSense and UniFi versions; the affected workflow; expected versus observed behavior; and redacted error text.
+Use [GitHub Issues](https://github.com/willliamchan/punifi-mac-filter/issues). For a runtime issue, include integration, HA, pfSense and UniFi versions; the affected workflow; expected versus observed behavior; and redacted error text.
 
 Never include passwords, API keys, request headers, complete configuration backups or raw XML-RPC/controller responses. Redact hostnames, IPs, SSIDs, MAC addresses and site/interface identifiers unless you deliberately intend to publish them. Check attachments and screenshots as well as text.

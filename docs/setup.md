@@ -2,7 +2,7 @@
 
 [← Back to the overview](../README.md)
 
-> **Planned workflow, not a released feature.** The integration is not installable yet. This guide describes the intended setup; final screen labels and screenshots will follow implementation testing.
+> **Beta 0.1.0b1.** The native setup/configuration flows are implemented and tested in Home Assistant. Screenshots and live UI acceptance remain pending. Start in observation-only mode.
 
 ## 1. Connect pfSense
 
@@ -17,7 +17,7 @@ In the pUniFi setup popup, enter:
 
 For example, use `firewall.example.com` in Host and `443` in Port, not `https://firewall.example.com:443/xmlrpc.php` in Host.
 
-pUniFi will use the built-in XML-RPC endpoint. No SSH access or pfSense REST API package is planned.
+pUniFi uses the built-in XML-RPC endpoint. No SSH access or pfSense REST API package is needed.
 
 ### pfSense permissions
 
@@ -41,7 +41,7 @@ Then select the intended site from the discovered sites. Do not paste a username
 
 ### Obtaining a UniFi API key
 
-Use the API-key management screen provided by your UniFi installation. Its location and permission model depend on the console and software version; a version-specific, tested menu path will be added before release. Do not guess privileges or assume that a key for the official Integration API can also update WLAN filters through the legacy API.
+Use the API-key management screen provided by your UniFi installation. Its location and permission model depend on the console and software version; a verified version-specific menu path is still pending for this beta. Do not guess privileges or assume that a key for the official Integration API can also update WLAN filters through the legacy API.
 
 Use a dedicated, appropriately scoped identity where supported. The minimum working role is still being verified; this project does not claim that console Owner access is required.
 
@@ -60,9 +60,9 @@ Choose **Add pair**, then select:
 
 The target label will include its SSID, linked network, VLAN where known, and site. Review these details even when the names look familiar.
 
-Add the pair, then repeat for other targets. A single pfSense interface can feed several SSIDs, but each SSID can have only one source. Selecting one SSID does not automatically manage other SSIDs sharing its network.
+On **Review pair**, check **Confirm pair** and submit to add it to the draft, then repeat for other targets. An unchecked confirmation discards that edit. Use **Review sync enablement and save** to commit the draft. A single pfSense interface can feed several SSIDs, but each SSID can have only one source. Selecting one SSID does not automatically manage other SSIDs sharing its network.
 
-A matching explicit VLAN may suggest a source interface. Suggestions are only a convenience: names do not have to match, different VLANs are allowed when deliberately selected, and ambiguous/missing VLAN information will not create a mapping. Unselected targets remain **Not managed**.
+A matching explicit VLAN may suggest a source interface for the target initially shown in the form. If you change that target, also review the source dropdown; native forms do not update that suggestion dynamically. Suggestions are only a convenience: names do not have to match, different VLANs are allowed when deliberately selected, and ambiguous/missing VLAN information will not create a mapping. Unselected targets remain **Not managed**.
 
 ### Example
 

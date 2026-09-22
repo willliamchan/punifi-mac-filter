@@ -4,9 +4,9 @@ Keep selected UniFi Wi-Fi MAC filters aligned with your pfSense DHCP policies, f
 
 **pfSense → Home Assistant → UniFi. One way only.**
 
-> **Development status: documentation only.** The integration has not been built or released. This repository cannot currently be installed through HACS. The guides describe the planned first release; screenshots, tested versions and release instructions will be added after verification.
+> **First test build: 0.1.0b1.** This is a beta, not a production-certified release. Start with sync disabled. Native HA tests and live read-only provider checks have been exercised; live filter changes and AP enforcement from this integration still need controlled user testing. See [test status](docs/testing.md).
 
-## What will it do?
+## What does it do?
 
 You manage your DHCP client policy and static MAC mappings in pfSense. pUniFi reads that configuration and updates the MAC filter on the UniFi Wi-Fi networks you explicitly choose.
 
@@ -20,7 +20,7 @@ For example, pair your pfSense **IoT** interface with your UniFi **Smart Home** 
 
 **Only explicitly selected SSIDs are managed.** UniFi applies these filters to Wi-Fi SSIDs, not an entire wired network. The mapping selector will show the SSID alongside its network, VLAN and site so you can choose the right target.
 
-## Planned features
+## Features
 
 - Install through HACS as a custom repository.
 - Enter connection details in Home Assistant; no YAML or external scripts.
@@ -32,7 +32,7 @@ For example, pair your pfSense **IoT** interface with your UniFi **Smart Home** 
 
 ## Get started
 
-When an installable release is available:
+For the beta:
 
 1. Follow the [installation guide](docs/installation.md).
 2. Use the [setup guide](docs/setup.md) to connect both systems and add your mappings.
@@ -50,12 +50,14 @@ If something does not work, start with [troubleshooting](docs/troubleshooting.md
 
 ## Compatibility
 
-No supported-version matrix is available yet. The planned connection methods are pfSense's built-in XML-RPC with username/password and UniFi Network access with an API key, over certificate-verified HTTPS.
+This beta requires **Home Assistant 2026.9.3 or newer** (the tested baseline). Its live read-only clients were verified against **pfSense 2.9.0-RELEASE** and **UniFi OS Network 10.6.106**. Older versions and standalone Network Server installations are not claimed as supported. Connections use built-in pfSense XML-RPC with username/password and UniFi API-key access over verified HTTPS.
 
-UniFi filter writes currently depend on a legacy controller API. An API key working with another UniFi integration does not guarantee it supports these operations. Supported pfSense, UniFi and Home Assistant versions will be published after testing. See [known limitations](docs/security.md#known-limitations).
+UniFi filter writes currently depend on a legacy controller API. An API key working with another UniFi integration does not guarantee it supports these operations. This beta targets the verified API layout rather than guessing alternative endpoints. See [known limitations](docs/security.md#known-limitations).
 
 ## Feedback
 
-Use [GitHub Issues](https://github.com/willliamchan/punifi-mac-filter/issues) for documentation feedback and feature discussions. There is no installable integration to troubleshoot yet. Never include credentials, full configuration exports or unredacted controller responses in an issue.
+Use [GitHub Issues](https://github.com/willliamchan/punifi-mac-filter/issues) for documentation feedback and feature discussions. Include the beta version and redacted error details for test feedback. Never include credentials, full configuration exports or unredacted controller responses in an issue.
+
+Licensed under the [MIT License](LICENSE).
 
 This is an independent project, not an official pfSense, Netgate, Ubiquiti or Home Assistant product.
